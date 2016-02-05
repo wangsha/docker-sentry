@@ -1,0 +1,65 @@
+# check https://hub.docker.com/_/sentry/ for environment variables option
+
+# sentry
+sentry_image: sentry:latest
+sentry_conf: /etc/sentry/sentry.conf.py
+sentry_data_dir: /var/lib/sentry/
+
+docker_sentry_env:
+  SENTRY_SECRET_KEY: "changethiskey"
+
+docker_sentry_links: []
+
+docker_api_version: "1.21"
+# sentry server
+docker_sentry_server: yes
+docker_sentry_server_upgrade: yes
+docker_sentry_server_name: "sentry_server_1"
+docker_sentry_server_upgrade_command: upgrade
+docker_sentry_server_command: start
+docker_sentry_server_image: "{{ sentry_image }}"
+docker_sentry_source_conf: "sentry.conf.py"
+docker_sentry_conf_dir: "/opt/sentry_server/conf"
+docker_sentry_conf_file: "{{ docker_sentry_conf_dir }}/sentry.conf.py"
+docker_sentry_server_data_dir: "/opt/sentry_server/data/"
+docker_sentry_server_hostname: ""
+docker_sentry_server_env: "{{ docker_sentry_env }}"
+docker_sentry_server_links: "{{ docker_sentry_links }}"
+docker_sentry_server_net: bridge
+docker_sentry_server_expose: []
+docker_sentry_server_ports: []
+docker_sentry_server_volumes:
+  - "{{ docker_sentry_conf_file }}:{{ sentry_conf }}:ro"
+  - "{{ docker_sentry_server_data_dir }}:{{ sentry_data_dir }}:rw"
+docker_sentry_server_volumes_from: []
+
+# celery beat
+docker_sentry_celery_beat: yes
+docker_sentry_celery_beat_instances: 1
+docker_sentry_celery_beat_name: sentry_celery_beat
+docker_sentry_celery_beat_image: "{{ sentry_image }}"
+docker_sentry_celery_beat_command: celery beat --pidfile=
+docker_sentry_celery_beat_data_dir: /opt/sentry_celery_beat/data/
+docker_sentry_celery_beat_env: "{{ docker_sentry_env }}"
+docker_sentry_celery_beat_net: bridge
+docker_sentry_celery_beat_hostname: ""
+docker_sentry_celery_beat_expose: []
+docker_sentry_celery_beat_ports: []
+docker_sentry_celery_beat_links: "{{ docker_sentry_links }}"
+docker_sentry_celery_beat_volumes: []
+docker_sentry_celery_beat_volumes_from: []
+
+# celery worker
+docker_sentry_celery_worker: yes
+docker_sentry_celery_worker_instances: 1
+docker_sentry_celery_worker_name: sentry_celery_worker
+docker_sentry_celery_worker_image: "{{ sentry_image }}"
+docker_sentry_celery_worker_command: celery worker
+docker_sentry_celery_worker_env: "{{ docker_sentry_env }}"
+docker_sentry_celery_worker_net: bridge
+docker_sentry_celery_worker_hostname: ""
+docker_sentry_celery_worker_expose: []
+docker_sentry_celery_worker_ports: []
+docker_sentry_celery_worker_links: "{{ docker_sentry_links }}"
+docker_sentry_celery_worker_volumes: []
+docker_sentry_celery_worker_volumes_from: []
