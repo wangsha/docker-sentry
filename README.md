@@ -52,9 +52,9 @@ Case 2: link sentry and postgres via environment variables.
     
     docker_sentry_env:
       SENTRY_SECRET_KEY: "changethiskey"
-      SENTRY_sentry_HOST: "sentry"
-      SENTRY_sentry_PORT: 6379
-      SENTRY_sentry_DB: 0
+      SENTRY_REDIS_HOST: "sentry"
+      SENTRY_REDIS_PORT: 6379
+      SENTRY_REDIS_DB: 0
       SENTRY_POSTGRES_HOST: "postgres"
       SENTRY_POSTGRES_PORT: ""
       SENTRY_DB_NAME: "postgres"
