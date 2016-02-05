@@ -69,9 +69,9 @@ Have a look at the [defaults/main.yml](defaults/main.yml) for role variables
 that can be overridden! 
 
 Reference Roles:
-[angstwad.docker_ubuntu)(https://github.com/angstwad/docker.ubuntu)
-[wangsha.docker-postgres](https://github.com/wangsha/docker-postgres)
-[wangsha.docker-redis](https://github.com/wangsha/docker-redis)
+* [angstwad.docker_ubuntu](https://github.com/angstwad/docker.ubuntu)
+* [wangsha.docker-postgres](https://github.com/wangsha/docker-postgres)
+* [wangsha.docker-redis](https://github.com/wangsha/docker-redis)
 
 License
 -------
