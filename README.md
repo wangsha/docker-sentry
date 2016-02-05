@@ -21,6 +21,11 @@ Install this module from Ansible Galaxy into the './roles' directory:
 ansible-galaxy install wangsha.docker-sentry -p ./roles
 ```
 
+If you are installing on a new database, you will need to run upgrade command before starting server.
+```bash
+$ docker run -it --rm --link sentry-postgres:postgres --link sentry-redis:redis sentry upgrade
+```
+
 Use it in a playbook as follows:
 Case 1: assuming you already have sentry and postgres running in docker containers:
 ```yaml
