@@ -2,6 +2,7 @@ docker-sentry
 ============
 
 [![Build Status](https://travis-ci.org/wangsha/docker-sentry.svg?branch=master)](https://travis-ci.org/wangsha/docker-sentry)
+[![Ansible Galaxy](https://img.shields.io/badge/AnsibleGalaxy-wangsha.docker--sentry-blue.svg)](https://galaxy.ansible.com/wangsha/docker-sentry/)
 
 Ansible role to manage and run the sentry docker container. 
 
