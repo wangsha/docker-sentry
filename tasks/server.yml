@@ -32,6 +32,9 @@
     name: "{{ docker_sentry_server_name }}"
     net: "{{ docker_sentry_server_net }}"
     ports: "{{ docker_sentry_server_ports }}"
+    memory_limit: "{{ docker_sentry_memory_limit }}"
+    log_driver: "{{ docker_sentry_log_driver }}"
+    log_opt: "{{ docker_sentry_log_opt }}"
     pull: always
     restart_policy: always
     state: reloaded

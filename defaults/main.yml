@@ -9,6 +9,11 @@ docker_sentry_env:
   SENTRY_SECRET_KEY: "changethiskey"
 
 docker_sentry_links: []
+docker_sentry_memory_limit: 128m
+docker_sentry_log_driver: syslog
+docker_sentry_log_opt:
+  syslog-facility: local0
+  syslog-tag: sentry
 
 docker_api_version: "1.21"
 # sentry server
