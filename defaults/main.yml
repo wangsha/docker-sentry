@@ -1,7 +1,7 @@
 # check https://hub.docker.com/_/sentry/ for environment variables option
 
 # sentry
-sentry_image: sentry:latest
+docker_sentry_image: sentry:latest
 sentry_conf: /etc/sentry/sentry.conf.py
 sentry_data_dir: /var/lib/sentry/
 
@@ -32,7 +32,7 @@ docker_sentry_server_upgrade: yes
 docker_sentry_server_name: "sentry_server_1"
 docker_sentry_server_upgrade_command: upgrade
 docker_sentry_server_command: start
-docker_sentry_server_image: "{{ sentry_image }}"
+docker_sentry_server_image: "{{ docker_sentry_image }}"
 docker_sentry_source_conf: "sentry.conf.py.j2"
 docker_sentry_conf_dir: "/opt/sentry_server/conf"
 docker_sentry_conf_file: "{{ docker_sentry_conf_dir }}/sentry.conf.py"
@@ -53,7 +53,7 @@ docker_sentry_server_volumes_from: []
 docker_sentry_celery_beat: yes
 docker_sentry_celery_beat_instances: 1
 docker_sentry_celery_beat_name: sentry_celery_beat
-docker_sentry_celery_beat_image: "{{ sentry_image }}"
+docker_sentry_celery_beat_image: "{{ docker_sentry_image }}"
 docker_sentry_celery_beat_command: celery beat
 docker_sentry_celery_beat_data_dir: /opt/sentry_celery_beat/data/
 docker_sentry_celery_beat_env: "{{ docker_sentry_env }}"
@@ -69,7 +69,7 @@ docker_sentry_celery_beat_volumes_from: []
 docker_sentry_celery_worker: yes
 docker_sentry_celery_worker_instances: 1
 docker_sentry_celery_worker_name: sentry_celery_worker
-docker_sentry_celery_worker_image: "{{ sentry_image }}"
+docker_sentry_celery_worker_image: "{{ docker_sentry_image }}"
 docker_sentry_celery_worker_command: celery worker
 docker_sentry_celery_worker_env: "{{ docker_sentry_env }}"
 docker_sentry_celery_worker_net: bridge
