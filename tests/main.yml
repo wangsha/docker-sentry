@@ -4,4 +4,5 @@
     docker_api_version: "1.20"
   roles:
     - role: 'docker-sentry'
+      docker_sentry_manual_upgrade_completed: yes
       become: true

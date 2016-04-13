@@ -5,8 +5,6 @@ sentry_image: sentry:latest
 sentry_conf: /etc/sentry/sentry.conf.py
 sentry_data_dir: /var/lib/sentry/
 
-docker_sentry_upgraded: no
-
 docker_sentry_env:
   SENTRY_SECRET_KEY: "changethiskey"
   SENTRY_POSTGRES_HOST: 127.0.0.1
