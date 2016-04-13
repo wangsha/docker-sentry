@@ -27,7 +27,7 @@ If you are installing on a new database, you will need to run upgrade command be
 $ docker run -it --rm --link sentry-postgres:postgres --link sentry-redis:redis sentry upgrade
 ```
 
-Use it in a playbook as follows:
+Use it in a playbook as follows after manual upgrade:
 Case 1: assuming you already have sentry and postgres running in docker containers:
 ```yaml
 - hosts: 'servers'
@@ -35,7 +35,7 @@ Case 1: assuming you already have sentry and postgres running in docker containe
     docker_sentry_links:
       - "{{ docker_sentry_name }}:sentry"
       - "{{ docker_postgres_name }}:postgres"
-    
+    docker_sentry_manual_upgrade_completed: yes
     docker_sentry_server_expose:
       - 9000
     docker_sentry_server_ports:

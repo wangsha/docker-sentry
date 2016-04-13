@@ -5,8 +5,18 @@ sentry_image: sentry:latest
 sentry_conf: /etc/sentry/sentry.conf.py
 sentry_data_dir: /var/lib/sentry/
 
+docker_sentry_upgraded: no
+
 docker_sentry_env:
   SENTRY_SECRET_KEY: "changethiskey"
+  SENTRY_POSTGRES_HOST: 127.0.0.1
+  SENTRY_POSTGRES_PORT: 5432
+  SENTRY_DB_NAME: sentry
+  SENTRY_DB_USER: postgres
+  SENTRY_DB_PASSWORD: postgres
+  SENTRY_REDIS_HOST: 127.0.0.1
+  SENTRY_REDIS_PORT: 6379
+  SENTRY_REDIS_DB: 0
 
 docker_sentry_links: []
 docker_sentry_memory_limit: 128MB
@@ -16,6 +26,8 @@ docker_sentry_log_opt:
   syslog-tag: sentry
 
 docker_api_version: "1.21"
+
+docker_sentry_manual_upgrade_completed: no
 # sentry server
 docker_sentry_server: yes
 docker_sentry_server_upgrade: yes
@@ -23,7 +35,7 @@ docker_sentry_server_name: "sentry_server_1"
 docker_sentry_server_upgrade_command: upgrade
 docker_sentry_server_command: start
 docker_sentry_server_image: "{{ sentry_image }}"
-docker_sentry_source_conf: "sentry.conf.py"
+docker_sentry_source_conf: "sentry.conf.py.j2"
 docker_sentry_conf_dir: "/opt/sentry_server/conf"
 docker_sentry_conf_file: "{{ docker_sentry_conf_dir }}/sentry.conf.py"
 docker_sentry_server_data_dir: "/opt/sentry_server/data/"
@@ -32,7 +44,8 @@ docker_sentry_server_env: "{{ docker_sentry_env }}"
 docker_sentry_server_links: "{{ docker_sentry_links }}"
 docker_sentry_server_net: bridge
 docker_sentry_server_expose: []
-docker_sentry_server_ports: []
+docker_sentry_server_ports:
+  - 9000:9000
 docker_sentry_server_volumes:
   - "{{ docker_sentry_conf_file }}:{{ sentry_conf }}:ro"
   - "{{ docker_sentry_server_data_dir }}:{{ sentry_data_dir }}:rw"
@@ -43,7 +56,7 @@ docker_sentry_celery_beat: yes
 docker_sentry_celery_beat_instances: 1
 docker_sentry_celery_beat_name: sentry_celery_beat
 docker_sentry_celery_beat_image: "{{ sentry_image }}"
-docker_sentry_celery_beat_command: celery beat --pidfile=
+docker_sentry_celery_beat_command: celery beat
 docker_sentry_celery_beat_data_dir: /opt/sentry_celery_beat/data/
 docker_sentry_celery_beat_env: "{{ docker_sentry_env }}"
 docker_sentry_celery_beat_net: bridge

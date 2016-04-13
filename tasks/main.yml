@@ -1,3 +1,7 @@
+- name: ensure manual upgrade is completed
+  fail: msg="Please run upgrade script manually. $ docker run -it --rm -e SENTRY_SECRET_KEY='<secret-key>' --link sentry-postgres:postgres --link sentry-redis:redis sentry upgrade. https://hub.docker.com/_/sentry/"
+  when: not docker_sentry_manual_upgrade_completed
+
 - include: celery.yml
   vars:
     docker_sentry_celery_instances: "{{ docker_sentry_celery_beat_instances }}"
@@ -7,7 +11,6 @@
     docker_sentry_celery_data_dir: "{{ docker_sentry_celery_beat_data_dir }}"
     docker_sentry_celery_env: "{{ docker_sentry_celery_beat_env }}"
     docker_sentry_celery_net: "{{ docker_sentry_celery_beat_net }}"
-    docker_sentry_celery_hostname: "{{ docker_sentry_celery_beat_hostname }}"
     docker_sentry_celery_expose: "{{ docker_sentry_celery_beat_expose }}"
     docker_sentry_celery_ports: "{{ docker_sentry_celery_beat_ports }}"
     docker_sentry_celery_links: "{{ docker_sentry_celery_beat_links }}"
@@ -24,7 +27,6 @@
     docker_sentry_celery_command: "{{ docker_sentry_celery_worker_command }}"
     docker_sentry_celery_env: "{{ docker_sentry_celery_worker_env }}"
     docker_sentry_celery_net: "{{ docker_sentry_celery_worker_net }}"
-    docker_sentry_celery_hostname: "{{ docker_sentry_celery_worker_hostname }}"
     docker_sentry_celery_expose: "{{ docker_sentry_celery_worker_expose }}"
     docker_sentry_celery_ports: "{{ docker_sentry_celery_worker_ports }}"
     docker_sentry_celery_links: "{{ docker_sentry_celery_worker_links }}"

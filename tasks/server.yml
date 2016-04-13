@@ -10,7 +10,7 @@
     - install
     - settings
 
-- name: Copy docker sentry sentry.conf.py file
+- name: Copy docker sentry sentry.conf.py.j2 file
   become: true
   template:
     src: "{{ docker_sentry_source_conf }}"
