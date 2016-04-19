@@ -221,7 +221,7 @@ SENTRY_WEB_OPTIONS = {
 
 email = os.environ.get('SENTRY_EMAIL_HOST') or (os.environ.get('SMTP_PORT_25_TCP_ADDR') and 'smtp')
 if email:
-    SENTRY_OPTIONS['mail.backend'] = or.environ.get('SENTRY_EMAIL_BACKEND') or 'smtp'
+    SENTRY_OPTIONS['mail.backend'] = os.environ.get('SENTRY_EMAIL_BACKEND') or 'smtp'
     SENTRY_OPTIONS['mail.host'] = email
     SENTRY_OPTIONS['mail.password'] = os.environ.get('SENTRY_EMAIL_PASSWORD') or ''
     SENTRY_OPTIONS['mail.username'] = os.environ.get('SENTRY_EMAIL_USER') or ''
