@@ -20,6 +20,16 @@
     - install
     - settings
 
+- name: Remove existing {{ docker_sentry_server_name }} container
+  docker:
+    docker_api_version: "{{ docker_api_version }}"
+    image: "{{ docker_sentry_server_image }}"
+    name: "{{ docker_sentry_server_name }}"
+    state: absent
+  tags:
+    - install
+    - upgrade
+
 - name: Run docker sentry server container
   docker:
     docker_api_version: "{{ docker_api_version }}"

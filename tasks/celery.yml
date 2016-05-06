@@ -1,3 +1,16 @@
+
+- name: Remove existing {{ docker_sentry_celery_image }} container
+  docker:
+    docker_api_version: "{{ docker_api_version }}"
+    image: "{{ docker_sentry_celery_image }}"
+    name: "{{ docker_sentry_celery_name }}_{{ item }}"
+    state: absent
+  with_sequence: count={{ docker_sentry_celery_instances }}
+  when: docker_sentry_celery_instances > 0
+  tags:
+    - install
+    - upgrade
+
 - name: Run docker sentry celery container
   docker:
     docker_api_version: "{{ docker_api_version }}"
