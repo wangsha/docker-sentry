@@ -4,6 +4,7 @@
 docker_sentry_image: sentry:latest
 sentry_conf: /etc/sentry/sentry.conf.py
 sentry_data_dir: /var/lib/sentry/
+sentry_config_extra: []
 
 docker_sentry_env:
   SENTRY_SECRET_KEY: "changethiskey"
