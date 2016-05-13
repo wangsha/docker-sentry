@@ -242,7 +242,11 @@ SENTRY_OPTIONS['mail.from'] = os.environ.get('SENTRY_SERVER_EMAIL') or 'root@loc
 
 # If you're using mailgun for inbound mail, set your API key and configure a
 # route to forward to /api/hooks/mailgun/inbound/
-MAILGUN_API_KEY = os.environ.get('SENTRY_MAILGUN_API_KEY') or ''
+SENTRY_OPTIONS['mail.mailgun-api-key'] = os.environ.get('SENTRY_MAILGUN_API_KEY') or ''
+
+# Github oauth
+GITHUB_APP_ID = os.environ.get('SENTRY_GITHUB_APP_ID') or ""
+GITHUB_API_SECRET = os.environ.get('SENTRY_GITHUB_API_SECRET') or ""
 
 # If this value ever becomes compromised, it's important to regenerate your
 # SENTRY_SECRET_KEY. Changing this value will result in all current sessions
