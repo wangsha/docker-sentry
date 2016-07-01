@@ -1,5 +1,5 @@
 - name: ensure manual upgrade is completed
-  fail: msg="Please run upgrade script manually. $ docker run -it --rm -e SENTRY_SECRET_KEY='<secret-key>' --link sentry-postgres:postgres --link sentry-redis:redis sentry upgrade. https://hub.docker.com/_/sentry/"
+  fail: msg="Please run upgrade script manually. $ docker run -it --rm -e SENTRY_SECRET_KEY='<secret-key>' --link sentry-postgres:postgres --link sentry-redis:redis {{ docker_sentry_image }} upgrade. https://hub.docker.com/_/sentry/"
   when: not docker_sentry_manual_upgrade_completed
 
 - include: celery.yml
